@@ -1,0 +1,6 @@
+<p><%= notice %></p>
+<h1>Subscription Details</h1>
+<% @user.restaurants.each do |restaurant| %>
+	<p> "Meet up at <%= restaurant.name %> in <%= restaurant.locality %>,<%= restaurant.city %>" </p>
+<% end %>	
+	

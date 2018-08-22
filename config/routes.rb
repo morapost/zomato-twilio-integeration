@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  get 'users/index'
+  
+  resources :users, only: [:new,:show,:create]
 
-  get 'users/new'
-
-  get 'restaurants/index'
+  
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

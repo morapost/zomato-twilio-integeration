@@ -19,7 +19,7 @@ class Restaurant < ApplicationRecord
 
 	def init
 		random_restaurant = find_random_restaurant
-		#binding.pry
+		
 		self.name ||= random_restaurant["name"]
 		self.city ||= random_restaurant["location"]["city"]
 		self.locality ||= random_restaurant["location"]["locality"]	

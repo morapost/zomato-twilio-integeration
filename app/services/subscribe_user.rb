@@ -3,13 +3,11 @@ SubscribeUser = Struct.new(:user_params) do
   def perform
   	restaurant = create_restaurant
     user = create_user(user_params)
-    #user_restaurant = entry_into_join_table
+    update_join_table(user,restaurant)
     send_whatsapp_message(restaurant,user)
     
   end
 
-  #Delayed::Job.enqueue UrlBoxService.new.perform.upload_to_s3
-  #handle_asynchronously :perform
 
   private
 
@@ -26,6 +24,11 @@ SubscribeUser = Struct.new(:user_params) do
   def send_whatsapp_message(restaurant,user)
   	message = "Meet up at #{restaurant.name} for #{user.first_name} is confirmed"
   	TwilioWhatsappMessenger.new(message).call
+    return @user
+  end
+
+  def update_join_table(user,restaurant)
+    UserRestaurant.create(user.id,restaurant.id)
   end
 
 end
